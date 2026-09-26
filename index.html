@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CacaoGrade AI | Smart Cacao Fermentation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="navbar" id="navbar">
+        <a class="brand" href="#home">
+            <span class="brand-mark"><img src="static/images/cacaograde-logo.svg" alt="CacaoGrade AI logo"></span>
+            <span>CacaoGrade <b>AI</b></span>
+        </a>
+
+        <nav id="nav">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#how">How It Works</a>
+            <button class="nav-link" id="developersBtn">Developers</button>
+            <button class="login-btn" id="loginBtn">Login</button>
+        </nav>
+
+        <button class="hamburger" id="hamburger" aria-label="Open menu">
+            <span></span><span></span><span></span>
+        </button>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="floating-beans">
+                <span>●</span><span>●</span><span>●</span><span>●</span><span>●</span>
+            </div>
+
+            <div class="hero-copy reveal">
+                <p class="eyebrow">SMART CACAO FERMENTATION</p>
+                <h1>Know your cacao.<br>Grade it <em>smarter.</em></h1>
+                <p class="hero-text">
+                    Upload a cacao bean image and let AI determine the fermentation stage, quality notes, and recommendations.
+                </p>
+                <div class="hero-actions">
+                    <button class="primary-btn" id="analyzeHeroBtn">✦ Analyze Cacao</button>
+                    <a class="outline-btn" href="#how">Learn More →</a>
+                </div>
+
+                <div class="mini-stats">
+                    <div><strong>4</strong><span>Fermentation stages</span></div>
+                    <div><strong>AI</strong><span>Computer vision</span></div>
+                    <div><strong>24/7</strong><span>Quick assessment</span></div>
+                </div>
+            </div>
+
+            <div class="hero-art reveal">
+                <div class="orbit orbit-a"></div>
+                <div class="orbit orbit-b"></div>
+                <div class="hero-image-wrap">
+                    <img src="static/images/cacao-hero.png" alt="Cacao pod and cacao powder">
+                </div>
+                <div class="scan-chip">AI VISION<br><b>READY</b></div>
+                <div class="quality-chip">
+                    <span class="pulse-dot"></span>
+                    <div><small>QUALITY CHECK</small><b>Automated</b></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="stages" id="about">
+            <div class="section-head reveal">
+                <p class="eyebrow brown">FERMENTATION STAGES</p>
+                <h2>Understand the bean at a glance.</h2>
+                <p>Four categories used by CacaoGrade AI for fermentation-stage assessment.</p>
+            </div>
+
+            <div class="stage-grid">
+                <article class="stage-card unfermented reveal">
+                    <div class="bean-image-wrapper">
+                        <img src="static/images/unfermented-cacao.png" alt="Unfermented Cacao Bean" class="bean-img">
+                    </div>
+                    <h3>Unfermented</h3>
+                    <p>Pale color, low aroma</p>
+                    <span class="stage-dot"></span>
+                </article>
+
+                <article class="stage-card partial reveal">
+                    <div class="bean-image-wrapper">
+                        <img src="static/images/partially-fermented.png" alt="Partially Fermented Cacao Bean" class="bean-img">
+                    </div>
+                    <h3>Partially Fermented</h3>
+                    <p>Light brown, mild aroma</p>
+                    <span class="stage-dot"></span>
+                </article>
+
+                <article class="stage-card well reveal featured">
+                    <div class="bean-image-wrapper">
+                        <img src="static/images/well-fermented.png" alt="Well-Fermented Cacao Bean" class="bean-img">
+                    </div>
+                    <h3>Well-Fermented</h3>
+                    <p>Rich brown, good aroma</p>
+                    <span class="stage-dot"></span>
+                </article>
+
+                <article class="stage-card over reveal">
+                    <div class="bean-image-wrapper">
+                        <img src="static/images/over-fermented.png" alt="Over-Fermented Cacao Bean" class="bean-img">
+                    </div>
+                    <h3>Over-Fermented</h3>
+                    <p>Dark, cracked, weak aroma</p>
+                    <span class="stage-dot"></span>
+                </article>
+            </div>
+        </section>
+
+        <section class="how" id="how">
+            <div class="section-head reveal">
+                <p class="eyebrow violet">HOW IT WORKS</p>
+                <h2>From cacao photo to useful insight.</h2>
+            </div>
+
+            <div class="steps">
+                <div class="step reveal">
+                    <span>01</span>
+                    <div class="step-icon">↑</div>
+                    <h3>Upload</h3>
+                    <p>Choose a clear photo of whole or cut-test cacao beans.</p>
+                </div>
+                <div class="connector"></div>
+                <div class="step reveal">
+                    <span>02</span>
+                    <div class="step-icon">⌁</div>
+                    <h3>Analyze</h3>
+                    <p>The computer vision model evaluates visible fermentation indicators.</p>
+                </div>
+                <div class="connector"></div>
+                <div class="step reveal">
+                    <span>03</span>
+                    <div class="step-icon">✓</div>
+                    <h3>Get Results</h3>
+                    <p>Receive a stage classification, quality notes, and recommendation.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="cta-card reveal">
+                <div>
+                    <p class="eyebrow">READY TO CHECK A BATCH?</p>
+                    <h2>Turn a cacao photo into a smarter decision.</h2>
+                </div>
+                <button class="primary-btn" id="analyzeCtaBtn">Start Analysis →</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="brand footer-brand"><span class="brand-mark"><img src="static/images/cacaograde-logo.svg" alt="CacaoGrade AI logo"></span><span>CacaoGrade <b>AI</b></span></div>
+        <p>© 2026 CacaoGrade AI — Cacao Fermentation & Quality Assessment</p>
+        <button class="footer-dev" id="developersFooterBtn">Meet the Developers</button>
+    </footer>
+
+    <!-- LOGIN / REGISTER MODAL -->
+    <div class="modal-overlay" id="authOverlay">
+        <div class="auth-modal">
+            <button class="close-modal" data-close="authOverlay">×</button>
+
+            <div class="auth-visual">
+                <img src="static/images/cacao-beans.png" alt="Cacao beans">
+                <div class="auth-brand"><img src="static/images/cacaograde-logo.svg" alt="CacaoGrade AI logo" class="auth-brand-logo"> CacaoGrade AI</div>
+                <div class="auth-quote">
+                    <p>Better cacao today,<br><em>brighter harvests tomorrow.</em></p>
+                </div>
+            </div>
+
+            <div class="auth-form">
+                <div class="auth-tabs">
+                    <button class="active" id="loginTab">Login</button>
+                    <button id="registerTab">Register</button>
+                </div>
+
+                <form id="loginForm">
+                    <h2>Welcome back.</h2>
+                    <p class="form-note">Sign in to analyze cacao and manage your batch records.</p>
+
+                    <label for="loginEmail">Email address</label>
+                    <div class="input-wrap"><span>✉</span><input type="email" id="loginEmail" required placeholder="you@example.com"></div>
+
+                    <label for="loginPassword">Password</label>
+                    <div class="input-wrap"><span>⌑</span><input type="password" id="loginPassword" required placeholder="Enter password"><button type="button" class="eye" data-target="loginPassword">◉</button></div>
+
+                    <div class="form-row"><label class="check"><input type="checkbox"> Remember me</label><a href="#" onclick="return false">Forgot password?</a></div>
+                    <button class="primary-btn full" type="submit">Log In</button>
+
+                    <div class="divider"><span>or continue with</span></div>
+                    <div class="social-row">
+                        <button type="button" class="social-btn"><span class="social-icon">G</span> Google</button>
+                        <button type="button" class="social-btn"><span class="social-icon">f</span> Facebook</button>
+                    </div>
+
+                    <p class="switch-text">Don't have an account? <button type="button" id="toRegister">Register</button></p>
+                </form>
+
+                <form id="registerForm" class="hidden">
+                    <h2>Create account.</h2>
+                    <p class="form-note">Create your CacaoGrade AI account to save analysis records.</p>
+
+                    <label for="regName">Full name</label>
+                    <div class="input-wrap"><span>♙</span><input type="text" id="regName" required placeholder="Full name"></div>
+
+                    <label for="regEmail">Email address</label>
+                    <div class="input-wrap"><span>✉</span><input type="email" id="regEmail" required placeholder="you@example.com"></div>
+
+                    <label for="regPassword">Password</label>
+                    <div class="input-wrap"><span>⌑</span><input type="password" id="regPassword" required minlength="8" placeholder="At least 8 characters"><button type="button" class="eye" data-target="regPassword">◉</button></div>
+
+                    <label for="regConfirm">Confirm password</label>
+                    <div class="input-wrap"><span>⌑</span><input type="password" id="regConfirm" required placeholder="Repeat password"></div>
+
+                    <label class="check consent"><input type="checkbox" required> I agree to the system terms and privacy notice.</label>
+                    <button class="primary-btn full" type="submit">Create Account</button>
+                    <p class="switch-text">Already have an account? <button type="button" id="toLogin">Login</button></p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ANALYSIS MODAL -->
+    <div class="modal-overlay" id="analysisOverlay">
+        <div class="analysis-modal">
+            <button class="close-modal" data-close="analysisOverlay">×</button>
+            <div class="analysis-head">
+                <p class="eyebrow violet">CACAO ANALYSIS</p>
+                <h2>Analyze a cacao image</h2>
+                <p>Upload a clear image to simulate the CacaoGrade AI assessment.</p>
+            </div>
+
+            <div class="upload-area" id="uploadArea">
+                <input type="file" id="cacaoFile" accept="image/png,image/jpeg,image/webp" hidden>
+                <div class="upload-icon">↑</div>
+                <h3>Drag & drop your image here</h3>
+                <p>or</p>
+                <button class="outline-btn" type="button" id="chooseImage">Choose Image</button>
+                <small>JPG, PNG or WEBP</small>
+                <img id="previewImage" class="preview hidden" alt="Selected cacao image">
+            </div>
+
+            <button class="primary-btn full" id="runAnalysis">Analyze Image</button>
+            <div class="analysis-loading hidden" id="loading">
+                <div class="loader"></div>
+                <p>AI is analyzing fermentation indicators...</p>
+            </div>
+            <div class="result-card hidden" id="resultCard">
+                <div class="result-image"><img id="resultImg" src="static/images/cacao-beans.png" alt="Cacao result"></div>
+                <div class="result-info">
+                    <span class="result-badge">✓ AI ANALYSIS COMPLETE</span>
+                    <h3>Well-Fermented</h3>
+                    <p class="confidence">Confidence: <b>94.8%</b></p>
+                    <hr>
+                    <h4>Quality Assessment</h4>
+                    <p>✓ Good fermentation indicators</p>
+                    <p>✓ Desirable color development</p>
+                    <p>✓ Suitable for further drying and storage</p>
+                    <h4>Recommendation</h4>
+                    <p>Continue proper drying and storage practices to maintain quality.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DEVELOPERS MODAL -->
+    <div class="modal-overlay" id="developersOverlay">
+        <div class="developers-modal">
+            <button class="close-modal" data-close="developersOverlay">×</button>
+            <div class="dev-head">
+                <p class="eyebrow violet">THE TEAM BEHIND CACOGRADE AI</p>
+                <h2>Meet the Developers</h2>
+                <p>Three developers working together to bring smarter cacao assessment to the web.</p>
+            </div>
+
+            <div class="developer-grid">
+                <article class="developer-card">
+                    <div class="dev-photo placeholder-photo">RS</div>
+                    <h3>Rico D. Respecia</h3>
+                    <p>Developer</p>
+                </article>
+                <article class="developer-card">
+                    <div class="dev-photo placeholder-photo">AC</div>
+                    <h3>Ashley C. Cuarenta</h3>
+                    <p>Developer</p>
+                </article>
+                <article class="developer-card">
+                    <div class="dev-photo placeholder-photo">PC</div>
+                    <h3>Princess Ivony P. Castillo</h3>
+                    <p>Developer</p>
+                </article>
+            </div>
+
+            <div class="dev-signature">Code + Cacao = Impact</div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
