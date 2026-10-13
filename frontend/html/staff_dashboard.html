@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#193b2a">
+    <title>Staff Dashboard | CacaoGradeAI</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Material+Symbols+Outlined" rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/staff_dashboard.css">
+    <script src="../js/staff_dashboard.js" defer></script>
+</head>
+
+<body>
+    <div class="staff-layout">
+
+        <aside class="staff-sidebar" id="staffSidebar">
+            <a href="../../index.html" class="staff-brand">
+                <img src="../images/cacaograde-logo-transparent.png" alt="CacaoGradeAI logo">
+                <span>Cacao<span class="staff-brand-accent">GradeAI</span>
+                <small>FERMENTATION INTELLIGENCE</small>
+                </span>
+            </a>
+
+            <p class="staff-sidebar-label">STAFF WORKSPACE</p>
+
+            <nav class="staff-navigation">
+                <button class="staff-nav-link active" data-page="overview">
+                <span class="material-symbols-outlined">dashboard</span>
+                Overview
+            </button>
+                <button class="staff-nav-link" data-page="batches">
+                <span class="material-symbols-outlined">inventory_2</span>
+                Batch Management
+            </button>
+                <button class="staff-nav-link" data-page="review">
+                <span class="material-symbols-outlined">fact_check</span>
+                Classification Review
+            </button>
+                <button class="staff-nav-link" data-page="history">
+                <span class="material-symbols-outlined">history</span>
+                Batch History
+            </button>
+                <button class="staff-nav-link" data-page="profile">
+                <span class="material-symbols-outlined">person</span>
+                My Profile
+            </button>
+            </nav>
+
+            <div class="staff-sidebar-bottom">
+                <div class="staff-help-card">
+                    <span class="material-symbols-outlined">support_agent</span>
+                    <strong>Need assistance?</strong>
+                    <p>Contact the system administrator if you need help with batch records.</p>
+                    <a href="mailto:cacaogradeai@gmail.com">Contact Support</a>
+                </div>
+
+                <a href="../../index.html" class="staff-nav-link">
+                    <span class="material-symbols-outlined">home</span> Back to Home
+                </a>
+
+                <p class="staff-sidebar-footer">CACAOGRADEAI · STAFF PORTAL</p>
+            </div>
+        </aside>
+
+        <main class="staff-main">
+            <header class="staff-topbar">
+                <div class="staff-topbar-left">
+                    <button class="staff-icon-button staff-menu-toggle" id="staffMenuToggle" type="button" aria-label="Toggle navigation">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+
+                    <div>
+                        <p class="staff-breadcrumb">Workspace / Staff Portal</p>
+                        <h1 id="staffPageTitle">Staff Dashboard</h1>
+                    </div>
+                </div>
+
+                <div class="staff-topbar-right">
+                    <button class="staff-icon-button" id="staffThemeToggle" type="button" aria-label="Enable dark mode" title="Switch to dark mode">
+                    <span class="material-symbols-outlined" id="staffThemeIcon">dark_mode</span>
+                </button>
+
+                    <div class="staff-user-summary">
+                        <div class="staff-user-avatar">
+                            <span class="material-symbols-outlined">badge</span>
+                        </div>
+                        <div>
+                            <strong>Staff Account</strong>
+                            <span>Quality Monitoring</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="staff-page-content">
+
+                <!-- OVERVIEW -->
+                <section class="staff-page active" id="overview">
+                    <div class="staff-welcome-banner">
+                        <div>
+                            <span class="staff-eyebrow">STAFF WORKSPACE</span>
+                            <h2>Welcome to your workspace.</h2>
+                            <p>Monitor cacao batch submissions, review available classification results, and keep quality records organized.</p>
+                            <button class="staff-primary-button" type="button" data-goto="batches">
+                            <span class="material-symbols-outlined">inventory_2</span>
+                            View Batch Records
+                            <span class="material-symbols-outlined">arrow_forward</span>
+                        </button>
+                        </div>
+                        <div class="staff-welcome-art">
+                            <span class="material-symbols-outlined">biotech</span>
+                        </div>
+                    </div>
+
+                    <div class="staff-section-heading">
+                        <div>
+                            <h2>System Overview</h2>
+                            <p>Summary of batch records available in this dashboard.</p>
+                        </div>
+                        <span class="staff-date-label" id="staffCurrentDate"></span>
+                    </div>
+
+                    <div class="staff-stats-grid">
+                        <article class="staff-stat-card">
+                            <div class="staff-stat-top">
+                                <span>Total Batches</span>
+                                <span class="material-symbols-outlined">inventory_2</span>
+                            </div>
+                            <h3 id="staffTotalBatches">0</h3>
+                            <p>Available batch records</p>
+                        </article>
+
+                        <article class="staff-stat-card">
+                            <div class="staff-stat-top">
+                                <span>Pending Review</span>
+                                <span class="material-symbols-outlined">pending_actions</span>
+                            </div>
+                            <h3 id="staffPendingBatches">0</h3>
+                            <p>Records awaiting a classification result</p>
+                        </article>
+
+                        <article class="staff-stat-card">
+                            <div class="staff-stat-top">
+                                <span>Classified Batches</span>
+                                <span class="material-symbols-outlined">task_alt</span>
+                            </div>
+                            <h3 id="staffClassifiedBatches">0</h3>
+                            <p>Records with an available result</p>
+                        </article>
+
+                        <article class="staff-stat-card">
+                            <div class="staff-stat-top">
+                                <span>Quality Flags</span>
+                                <span class="material-symbols-outlined">flag</span>
+                            </div>
+                            <h3 id="staffQualityFlags">0</h3>
+                            <p>Records flagged for quality review</p>
+                        </article>
+                    </div>
+
+                    <section class="staff-surface-card staff-recent-card">
+                        <div class="staff-section-heading staff-compact-heading">
+                            <div>
+                                <h2>Recent Batch Submissions</h2>
+                                <p>Latest records available to staff.</p>
+                            </div>
+                            <button class="staff-text-button" type="button" data-goto="batches">View All</button>
+                        </div>
+                        <div id="staffRecentList" class="staff-record-list"></div>
+                    </section>
+                </section>
+
+                <!-- BATCH MANAGEMENT -->
+                <section class="staff-page" id="batches">
+                    <div class="staff-section-heading">
+                        <div>
+                            <h2>Batch Management</h2>
+                            <p>Search and review the cacao batch records available to this account.</p>
+                        </div>
+                    </div>
+
+                    <section class="staff-surface-card">
+                        <div class="staff-filter-row">
+                            <div class="staff-search-box">
+                                <span class="material-symbols-outlined">search</span>
+                                <input id="staffBatchSearch" type="search" placeholder="Search batch name or filename" aria-label="Search batch records">
+                            </div>
+
+                            <select id="staffStatusFilter" aria-label="Filter by status">
+                            <option value="all">All Statuses</option>
+                            <option value="Pending">Pending</option>
+                            <option value="Classified">Classified</option>
+                            <option value="Flagged">Flagged</option>
+                        </select>
+                        </div>
+
+                        <div class="staff-table-wrap">
+                            <table class="staff-table">
+                                <thead>
+                                    <tr>
+                                        <th>Batch Details</th>
+                                        <th>Date Submitted</th>
+                                        <th>Classification</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="staffBatchTableBody"></tbody>
+                            </table>
+                        </div>
+
+                        <p id="staffBatchEmpty" class="staff-empty-state" hidden>
+                            No matching batch records are available.
+                        </p>
+                    </section>
+                </section>
+
+                <!-- CLASSIFICATION REVIEW -->
+                <section class="staff-page" id="review">
+                    <div class="staff-section-heading">
+                        <div>
+                            <h2>Classification Review</h2>
+                            <p>Inspect the classification data returned by the connected AI service.</p>
+                        </div>
+                    </div>
+
+                    <section class="staff-surface-card">
+                        <div class="staff-review-notice">
+                            <span class="material-symbols-outlined">info</span>
+                            <p>Only results actually received from the backend should be reviewed as AI classifications. Pending records do not contain a confirmed prediction.</p>
+                        </div>
+
+                        <div id="staffReviewList" class="staff-review-list"></div>
+                    </section>
+                </section>
+
+                <!-- BATCH HISTORY -->
+                <section class="staff-page" id="history">
+                    <div class="staff-section-heading">
+                        <div>
+                            <h2>Batch History</h2>
+                            <p>Chronological record of available batch submissions and results.</p>
+                        </div>
+                    </div>
+
+                    <section class="staff-surface-card">
+                        <div id="staffHistoryList" class="staff-record-list"></div>
+                    </section>
+                </section>
+
+                <!-- PROFILE -->
+                <section class="staff-page" id="profile">
+                    <div class="staff-section-heading">
+                        <div>
+                            <h2>My Profile</h2>
+                            <p>Staff account overview.</p>
+                        </div>
+                    </div>
+
+                    <section class="staff-surface-card staff-profile-card">
+                        <div class="staff-profile-avatar">
+                            <span class="material-symbols-outlined">badge</span>
+                        </div>
+                        <h2>Staff Account</h2>
+                        <p class="staff-profile-role">Quality Monitoring</p>
+
+                        <div class="staff-profile-divider"></div>
+
+                        <div class="staff-profile-detail">
+                            <span>Account Role</span>
+                            <strong>Staff</strong>
+                        </div>
+                        <div class="staff-profile-detail">
+                            <span>System</span>
+                            <strong>CacaoGradeAI</strong>
+                        </div>
+                        <div class="staff-profile-detail">
+                            <span>Workspace</span>
+                            <strong>Batch Monitoring</strong>
+                        </div>
+                    </section>
+                </section>
+
+                <footer class="staff-footer">
+                    <span>CacaoGradeAI</span>
+                    <span>Fermentation Classification &amp; Quality Assessment</span>
+                </footer>
+            </div>
+        </main>
+    </div>
+
+    <div class="staff-mobile-overlay" id="staffMobileOverlay"></div>
+
+    <!-- BATCH DETAIL DIALOG -->
+    <dialog id="staffBatchDialog" class="staff-dialog">
+        <div class="staff-dialog-header">
+            <h2>Batch Details</h2>
+            <button type="button" class="staff-icon-button" id="staffCloseDialog" aria-label="Close batch details">
+            <span class="material-symbols-outlined">close</span>
+        </button>
+        </div>
+        <div id="staffDialogContent"></div>
+    </dialog>
+
+</body>
+
+</html>

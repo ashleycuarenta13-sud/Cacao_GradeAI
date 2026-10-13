@@ -1,0 +1,358 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#193b2a">
+    <title>Farmer Dashboard | CacaoGradeAI</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Material+Symbols+Outlined" rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/farmer_dashboard.css">
+    <script src="../js/farmer_dashboard.js" defer></script>
+</head>
+<body>
+<div class="app-layout">
+
+    <aside class="sidebar" id="sidebar">
+        <a href="../../index.html" class="brand">
+            <img src="../images/cacaograde-logo-transparent.png" alt="CacaoGradeAI Logo">
+            <span>Cacao<span class="brand-accent">GradeAI</span>
+                <small>FERMENTATION INTELLIGENCE</small>
+            </span>
+        </a>
+
+        <p class="sidebar-label">WORKSPACE</p>
+
+        <nav class="navigation">
+            <button class="nav-link active" data-page="overview">
+                <span class="material-symbols-outlined">dashboard</span>
+                Dashboard
+            </button>
+            <button class="nav-link" data-page="classify">
+                <span class="material-symbols-outlined">photo_camera</span>
+                Classify Beans
+            </button>
+            <button class="nav-link" data-page="history">
+                <span class="material-symbols-outlined">inventory_2</span>
+                Batch History
+            </button>
+            <button class="nav-link" data-page="profile">
+                <span class="material-symbols-outlined">person</span>
+                My Profile
+            </button>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="help-card">
+                <span class="material-symbols-outlined">support_agent</span>
+                <strong>Need assistance?</strong>
+                <p>Get help with cacao classification and quality assessment.</p>
+                <a href="mailto:cacaogradeai@gmail.com">Contact Support</a>
+            </div>
+
+            <a class="nav-link back-link" href="../../index.html">
+                <span class="material-symbols-outlined">home</span>
+                Back to Home
+            </a>
+
+            <p class="sidebar-footer">CACAOGRADEAI · FARMER PORTAL</p>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="topbar">
+            <div class="topbar-left">
+                <button class="icon-button menu-toggle" id="menuToggle"
+                        type="button" aria-label="Toggle navigation">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+
+                <div>
+                    <p class="breadcrumb">Workspace / Farmer Portal</p>
+                    <h1 id="pageTitle">Farmer Dashboard</h1>
+                </div>
+            </div>
+
+            <div class="topbar-right">
+                <button class="icon-button theme-toggle" id="themeToggle"
+                        type="button" aria-label="Enable dark mode"
+                        title="Switch to dark mode">
+                    <span class="material-symbols-outlined" id="themeIcon">dark_mode</span>
+                </button>
+
+                <div class="user-summary">
+                    <div class="user-avatar">F</div>
+                    <div class="user-text">
+                        <strong>Farmer Account</strong>
+                        <span>Cacao Grower</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="page-content">
+
+            <section class="page-section active" id="overview">
+                <div class="welcome-banner">
+                    <div class="welcome-copy">
+                        <span class="eyebrow">CACAO QUALITY MANAGEMENT</span>
+                        <h2>Good day, Farmer.</h2>
+                        <p>Track your cacao batches, review fermentation stages, and organize your quality records in one place.</p>
+                        <button class="primary-button" type="button" data-goto="classify">
+                            <span class="material-symbols-outlined">add_a_photo</span>
+                            Classify Cacao Beans
+                            <span class="material-symbols-outlined">arrow_forward</span>
+                        </button>
+                    </div>
+                    <div class="welcome-visual">
+                        <img src="../images/cacao-hero.png" alt="Cacao beans">
+                    </div>
+                </div>
+
+                <div class="section-heading">
+                    <div>
+                        <h2>Overview</h2>
+                        <p>Summary of your cacao classification activity.</p>
+                    </div>
+                    <span class="date-label" id="currentDate"></span>
+                </div>
+
+                <div class="stats-grid">
+                    <article class="stat-card">
+                        <div class="stat-top">
+                            <span>Total Batches</span>
+                            <span class="material-symbols-outlined">inventory_2</span>
+                        </div>
+                        <h3 id="totalBatches">0</h3>
+                        <p>Batch records saved in this browser</p>
+                    </article>
+
+                    <article class="stat-card">
+                        <div class="stat-top">
+                            <span>AI Classifications</span>
+                            <span class="material-symbols-outlined">image_search</span>
+                        </div>
+                        <h3 id="totalClassified">0</h3>
+                        <p>Results received from the classification API</p>
+                    </article>
+
+                    <article class="stat-card">
+                        <div class="stat-top">
+                            <span>Pending Records</span>
+                            <span class="material-symbols-outlined">schedule</span>
+                        </div>
+                        <h3 id="totalPending">0</h3>
+                        <p>Records awaiting classification</p>
+                    </article>
+                </div>
+
+                <div class="content-grid">
+                    <section class="surface-card">
+                        <div class="section-heading compact">
+                            <div>
+                                <h2>Fermentation Categories</h2>
+                                <p>Classification stages supported by the system.</p>
+                            </div>
+                        </div>
+
+                        <div class="category-list">
+                            <article class="category-item">
+                                <img src="../images/unfermented-cacao.png" alt="Unfermented cacao">
+                                <div>
+                                    <strong>Unfermented</strong>
+                                    <p>Fermentation is not yet sufficiently developed.</p>
+                                </div>
+                            </article>
+
+                            <article class="category-item">
+                                <img src="../images/partially-fermented.png" alt="Partially fermented cacao">
+                                <div>
+                                    <strong>Partially Fermented</strong>
+                                    <p>Fermentation is incomplete or uneven.</p>
+                                </div>
+                            </article>
+
+                            <article class="category-item">
+                                <img src="../images/well-fermented.png" alt="Well-fermented cacao">
+                                <div>
+                                    <strong>Well-Fermented</strong>
+                                    <p>Fermentation appears well developed.</p>
+                                </div>
+                            </article>
+
+                            <article class="category-item">
+                                <img src="../images/over-fermented.png" alt="Over-fermented cacao">
+                                <div>
+                                    <strong>Over-Fermented</strong>
+                                    <p>Possible over-fermentation; verify with quality checks.</p>
+                                </div>
+                            </article>
+                        </div>
+                    </section>
+
+                    <section class="surface-card">
+                        <div class="section-heading compact">
+                            <div>
+                                <h2>Recent Batch Activity</h2>
+                                <p>Your latest batch records.</p>
+                            </div>
+                            <button class="text-button" type="button" data-goto="history">View All</button>
+                        </div>
+                        <div id="recentHistory" class="record-list"></div>
+                    </section>
+                </div>
+            </section>
+
+            <section class="page-section" id="classify">
+                <div class="section-heading">
+                    <div>
+                        <h2>Classify Cacao Beans</h2>
+                        <p>Upload a cut-test photo to submit it for classification.</p>
+                    </div>
+                </div>
+
+                <div class="content-grid classify-grid">
+                    <section class="surface-card">
+                        <h2>Photo Submission</h2>
+                        <p class="section-description">Provide your batch information and cacao image.</p>
+
+                        <form id="classifyForm">
+                            <div class="form-field">
+                                <label for="batchName">Batch Name <span>*</span></label>
+                                <input type="text" id="batchName" maxlength="80"
+                                       placeholder="e.g. Cacao Batch 001" required>
+                            </div>
+
+                            <div class="form-field">
+                                <label for="batchNotes">Batch Notes <small>Optional</small></label>
+                                <textarea id="batchNotes" rows="3"
+                                          placeholder="Add location or fermentation notes"></textarea>
+                            </div>
+
+                            <div class="upload-zone" id="uploadZone">
+                                <span class="material-symbols-outlined upload-symbol">cloud_upload</span>
+                                <h3>Upload Cut-Test Photo</h3>
+                                <p>Choose a clear image of the cut cacao beans.</p>
+                                <p class="file-guidance">JPG or PNG · Maximum 5 MB</p>
+
+                                <label class="secondary-button file-picker" for="cacaoPhoto">
+                                    Choose Image
+                                </label>
+                                <input type="file" id="cacaoPhoto"
+                                       accept=".jpg,.jpeg,.png,image/jpeg,image/png" required>
+                            </div>
+
+                            <div class="preview-container" id="previewContainer" hidden>
+                                <img id="imagePreview" alt="Selected cacao photo preview">
+                                <div class="preview-info">
+                                    <strong id="fileName"></strong>
+                                    <span id="fileSize"></span>
+                                </div>
+                                <button type="button" class="icon-button" id="removePhoto"
+                                        aria-label="Remove selected photo">
+                                    <span class="material-symbols-outlined">close</span>
+                                </button>
+                            </div>
+
+                            <p class="form-message" id="formMessage" role="status"></p>
+
+                            <button class="primary-button submit-button" type="submit">
+                                Submit Batch
+                                <span class="material-symbols-outlined">arrow_forward</span>
+                            </button>
+                        </form>
+                    </section>
+
+                    <section class="surface-card">
+                        <h2>Classification Result</h2>
+                        <p class="section-description">The actual result will appear here when the classification API is connected.</p>
+
+                        <div id="resultPlaceholder" class="empty-state">
+                            <span class="material-symbols-outlined">document_search</span>
+                            <strong>No Result Available</strong>
+                            <p>Submit a batch. A real classification result requires a connected backend model.</p>
+                        </div>
+
+                        <div id="resultBox" hidden>
+                            <span class="result-label">CLASSIFICATION RESULT</span>
+                            <h3 id="resultStage"></h3>
+                            <p id="resultNotes"></p>
+
+                            <div class="confidence-row">
+                                <span>Confidence Score</span>
+                                <strong id="resultConfidence">Unavailable</strong>
+                            </div>
+                            <div class="confidence-track">
+                                <div id="confidenceBar"></div>
+                            </div>
+
+                            <div class="recommendation">
+                                <span class="material-symbols-outlined">lightbulb</span>
+                                <div>
+                                    <strong>Recommended Action</strong>
+                                    <p id="resultRecommendation"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </section>
+
+            <section class="page-section" id="history">
+                <div class="section-heading">
+                    <div>
+                        <h2>Batch History</h2>
+                        <p>Review batch records created in this browser.</p>
+                    </div>
+                    <button class="secondary-button" id="clearHistory" type="button">
+                        <span class="material-symbols-outlined">delete_sweep</span>
+                        Clear Records
+                    </button>
+                </div>
+
+                <section class="surface-card">
+                    <div id="historyList" class="record-list"></div>
+                </section>
+            </section>
+
+            <section class="page-section" id="profile">
+                <div class="section-heading">
+                    <div>
+                        <h2>My Profile</h2>
+                        <p>Farmer account information.</p>
+                    </div>
+                </div>
+
+                <section class="surface-card profile-card">
+                    <div class="large-avatar">
+                        <span class="material-symbols-outlined">agriculture</span>
+                    </div>
+                    <h2>Farmer Account</h2>
+                    <p class="profile-role">Farmer / Cacao Grower</p>
+                    <div class="profile-divider"></div>
+                    <div class="profile-detail">
+                        <span>Account Role</span>
+                        <strong>Farmer</strong>
+                    </div>
+                    <div class="profile-detail">
+                        <span>System</span>
+                        <strong>CacaoGradeAI</strong>
+                    </div>
+                </section>
+            </section>
+
+            <footer class="page-footer">
+                <span>CacaoGradeAI</span>
+                <span>Fermentation Classification &amp; Quality Assessment</span>
+            </footer>
+        </div>
+    </main>
+</div>
+
+<div class="mobile-overlay" id="mobileOverlay"></div>
+</body>
+</html>

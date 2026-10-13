@@ -1,0 +1,117 @@
+/* =========================================================
+   Shared background for all dashboards (farmer, staff, admin)
+   Put this file in frontend/css/ and link it AFTER the
+   dashboard's own css file.
+   ========================================================= */
+
+
+/* ---------- background scene ---------- */
+
+body {
+    background: #1d0e09 url("../images/cacao-landing-bg.png") center / cover no-repeat fixed !important;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(20, 9, 6, .5) 0%, rgba(20, 9, 6, .72) 100%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+[class$="layout"] {
+    background: transparent !important;
+}
+
+
+/* ---------- sidebar: dark brown glass ---------- */
+
+aside[class*="sidebar"] {
+    background: rgba(30, 14, 9, .66) !important;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-right: 1px solid rgba(255, 255, 255, .12);
+}
+
+aside [class*="nav-link"]:hover,
+aside [class*="nav-link"].active {
+    background: rgba(255, 255, 255, .10) !important;
+    border-color: rgba(230, 173, 103, .35) !important;
+    color: #fff !important;
+}
+
+aside [class*="help-card"] {
+    background: rgba(255, 255, 255, .07) !important;
+    border-color: rgba(255, 255, 255, .14) !important;
+}
+
+aside [class*="sidebar-footer"] {
+    border-top-color: rgba(255, 255, 255, .14) !important;
+}
+
+
+/* ---------- top bar: light frosted glass ---------- */
+
+header[class*="topbar"] {
+    background: rgba(255, 250, 245, .82) !important;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 255, 255, .35) !important;
+}
+
+
+/* ---------- cards: light frosted glass ---------- */
+
+[class*="surface-card"],
+[class*="stat-card"],
+[class*="search-box"],
+[class*="filter-row"] select {
+    background: rgba(255, 250, 245, .88) !important;
+    border: 1px solid rgba(255, 255, 255, .38) !important;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+
+
+/* ---------- welcome banner: dark glass with warm tint ---------- */
+
+[class*="welcome-banner"] {
+    background: linear-gradient(110deg, rgba(38, 17, 10, .82), rgba(96, 48, 26, .55)) !important;
+    border: 1px solid rgba(255, 255, 255, .18);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+
+/* ---------- headings that sit directly on the scene ---------- */
+
+[class*="page-section"]>[class*="section-heading"]:not([class*="compact"]) h2,
+[class*="page-section"]>[class*="section-heading"]:not([class*="compact"]) p {
+    color: #fff !important;
+}
+
+[class*="page-section"]>[class*="section-heading"]:not([class*="compact"]) p {
+    color: rgba(255, 255, 255, .78) !important;
+}
+
+footer[class*="footer"] {
+    color: rgba(255, 255, 255, .75) !important;
+    border-top-color: rgba(255, 255, 255, .2) !important;
+}
+
+
+/* ---------- dark mode toggle: dark glass cards ---------- */
+
+body[class*="dark"] header[class*="topbar"] {
+    background: rgba(26, 20, 16, .8) !important;
+    border-bottom-color: rgba(255, 255, 255, .12) !important;
+}
+
+body[class*="dark"] [class*="surface-card"],
+body[class*="dark"] [class*="stat-card"],
+body[class*="dark"] [class*="search-box"],
+body[class*="dark"] [class*="filter-row"] select {
+    background: rgba(26, 20, 16, .74) !important;
+    border-color: rgba(255, 255, 255, .14) !important;
+}

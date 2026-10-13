@@ -1,0 +1,415 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#193b2a">
+    <title>Admin Dashboard | CacaoGradeAI</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Material+Symbols+Outlined" rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/admin_dashboard.css">
+    <script src="../js/admin_dashboard.js" defer></script>
+</head>
+<body>
+<div class="admin-layout">
+    <aside class="admin-sidebar" id="adminSidebar">
+        <a href="../../index.html" class="admin-brand">
+            <img src="../images/cacaograde-logo-transparent.png" alt="CacaoGradeAI logo">
+            <span>Cacao<span class="admin-brand-accent">GradeAI</span>
+                <small>ADMINISTRATION PORTAL</small>
+            </span>
+        </a>
+
+        <p class="admin-sidebar-label">ADMIN WORKSPACE</p>
+
+        <nav class="admin-navigation">
+            <button class="admin-nav-link active" data-page="overview">
+                <span class="material-symbols-outlined">dashboard</span>
+                Overview
+            </button>
+            <button class="admin-nav-link" data-page="users">
+                <span class="material-symbols-outlined">group</span>
+                User Management
+            </button>
+            <button class="admin-nav-link" data-page="batches">
+                <span class="material-symbols-outlined">inventory_2</span>
+                Batch Management
+            </button>
+            <button class="admin-nav-link" data-page="classifications">
+                <span class="material-symbols-outlined">biotech</span>
+                Classifications
+            </button>
+            <button class="admin-nav-link" data-page="activity">
+                <span class="material-symbols-outlined">manage_history</span>
+                System Activity
+            </button>
+            <button class="admin-nav-link" data-page="profile">
+                <span class="material-symbols-outlined">admin_panel_settings</span>
+                My Profile
+            </button>
+        </nav>
+
+        <div class="admin-sidebar-bottom">
+            <div class="admin-security-card">
+                <span class="material-symbols-outlined">shield</span>
+                <strong>System Administration</strong>
+                <p>Manage users and monitor cacao quality records responsibly.</p>
+            </div>
+
+            <a href="../../index.html" class="admin-nav-link">
+                <span class="material-symbols-outlined">home</span>
+                Back to Home
+            </a>
+
+            <p class="admin-sidebar-footer">CACOGRADEAI · ADMIN PORTAL</p>
+        </div>
+    </aside>
+
+    <main class="admin-main">
+        <header class="admin-topbar">
+            <div class="admin-topbar-left">
+                <button class="admin-icon-button admin-menu-toggle"
+                        id="adminMenuToggle" type="button"
+                        aria-label="Toggle navigation">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+                <div>
+                    <p class="admin-breadcrumb">Workspace / Administration</p>
+                    <h1 id="adminPageTitle">Admin Dashboard</h1>
+                </div>
+            </div>
+
+            <div class="admin-topbar-right">
+                <button class="admin-icon-button" id="adminThemeToggle"
+                        type="button" aria-label="Enable dark mode"
+                        title="Switch to dark mode">
+                    <span class="material-symbols-outlined" id="adminThemeIcon">dark_mode</span>
+                </button>
+
+                <div class="admin-user-summary">
+                    <div class="admin-user-avatar">
+                        <span class="material-symbols-outlined">admin_panel_settings</span>
+                    </div>
+                    <div>
+                        <strong>Administrator</strong>
+                        <span>System Management</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="admin-page-content">
+
+            <!-- OVERVIEW -->
+            <section class="admin-page active" id="overview">
+                <div class="admin-welcome-banner">
+                    <div>
+                        <span class="admin-eyebrow">SYSTEM ADMINISTRATION</span>
+                        <h2>Manage your system with confidence.</h2>
+                        <p>Monitor user accounts, oversee cacao batch records, and review classification activity from one workspace.</p>
+                        <button class="admin-primary-button" type="button" data-goto="users">
+                            <span class="material-symbols-outlined">manage_accounts</span>
+                            Manage Users
+                            <span class="material-symbols-outlined">arrow_forward</span>
+                        </button>
+                    </div>
+                    <div class="admin-welcome-art">
+                        <span class="material-symbols-outlined">admin_panel_settings</span>
+                    </div>
+                </div>
+
+                <div class="admin-section-heading">
+                    <div>
+                        <h2>System Overview</h2>
+                        <p>Summary of the records available in this browser.</p>
+                    </div>
+                    <span class="admin-date-label" id="adminCurrentDate"></span>
+                </div>
+
+                <div class="admin-stats-grid">
+                    <article class="admin-stat-card">
+                        <div class="admin-stat-top">
+                            <span>Total Users</span>
+                            <span class="material-symbols-outlined">group</span>
+                        </div>
+                        <h3 id="adminTotalUsers">0</h3>
+                        <p>Accounts in the user directory</p>
+                    </article>
+
+                    <article class="admin-stat-card">
+                        <div class="admin-stat-top">
+                            <span>Farmers</span>
+                            <span class="material-symbols-outlined">agriculture</span>
+                        </div>
+                        <h3 id="adminFarmerCount">0</h3>
+                        <p>Farmer accounts</p>
+                    </article>
+
+                    <article class="admin-stat-card">
+                        <div class="admin-stat-top">
+                            <span>Staff</span>
+                            <span class="material-symbols-outlined">badge</span>
+                        </div>
+                        <h3 id="adminStaffCount">0</h3>
+                        <p>Staff accounts</p>
+                    </article>
+
+                    <article class="admin-stat-card">
+                        <div class="admin-stat-top">
+                            <span>Total Batches</span>
+                            <span class="material-symbols-outlined">inventory_2</span>
+                        </div>
+                        <h3 id="adminTotalBatches">0</h3>
+                        <p>Available batch records</p>
+                    </article>
+                </div>
+
+                <div class="admin-overview-grid">
+                    <section class="admin-surface-card">
+                        <div class="admin-section-heading admin-compact-heading">
+                            <div>
+                                <h2>Batch Status</h2>
+                                <p>Current status of available batch records.</p>
+                            </div>
+                        </div>
+
+                        <div class="admin-status-summary">
+                            <div class="admin-status-row">
+                                <span><i class="admin-status-dot pending-dot"></i>Pending</span>
+                                <strong id="adminPendingCount">0</strong>
+                            </div>
+                            <div class="admin-status-track">
+                                <div id="adminPendingBar" class="admin-status-fill pending-fill"></div>
+                            </div>
+
+                            <div class="admin-status-row">
+                                <span><i class="admin-status-dot classified-dot"></i>Classified</span>
+                                <strong id="adminClassifiedCount">0</strong>
+                            </div>
+                            <div class="admin-status-track">
+                                <div id="adminClassifiedBar" class="admin-status-fill classified-fill"></div>
+                            </div>
+
+                            <div class="admin-status-row">
+                                <span><i class="admin-status-dot flagged-dot"></i>Flagged</span>
+                                <strong id="adminFlaggedCount">0</strong>
+                            </div>
+                            <div class="admin-status-track">
+                                <div id="adminFlaggedBar" class="admin-status-fill flagged-fill"></div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="admin-surface-card">
+                        <div class="admin-section-heading admin-compact-heading">
+                            <div>
+                                <h2>Recent Activity</h2>
+                                <p>Latest actions recorded in this browser.</p>
+                            </div>
+                            <button class="admin-text-button" type="button" data-goto="activity">View All</button>
+                        </div>
+                        <div id="adminRecentActivity" class="admin-activity-list"></div>
+                    </section>
+                </div>
+
+                <section class="admin-surface-card admin-recent-batches">
+                    <div class="admin-section-heading admin-compact-heading">
+                        <div>
+                            <h2>Recent Batch Records</h2>
+                            <p>Recently submitted cacao batches.</p>
+                        </div>
+                        <button class="admin-text-button" type="button" data-goto="batches">View All</button>
+                    </div>
+                    <div id="adminRecentBatches" class="admin-record-list"></div>
+                </section>
+            </section>
+
+            <!-- USER MANAGEMENT -->
+            <section class="admin-page" id="users">
+                <div class="admin-section-heading">
+                    <div>
+                        <h2>User Management</h2>
+                        <p>View and filter user directory records. Account creation and role changes require the backend.</p>
+                    </div>
+                </div>
+
+                <section class="admin-surface-card">
+                    <div class="admin-filter-row">
+                        <div class="admin-search-box">
+                            <span class="material-symbols-outlined">search</span>
+                            <input id="adminUserSearch" type="search"
+                                   placeholder="Search name, email, or ID"
+                                   aria-label="Search users">
+                        </div>
+
+                        <select id="adminRoleFilter" aria-label="Filter by role">
+                            <option value="all">All Roles</option>
+                            <option value="Farmer">Farmer</option>
+                            <option value="Staff">Staff</option>
+                            <option value="Admin">Admin</option>
+                        </select>
+                    </div>
+
+                    <div class="admin-table-wrap">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>User</th>
+                                    <th>Email</th>
+                                    <th>Role</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminUserTableBody"></tbody>
+                        </table>
+                    </div>
+
+                    <p id="adminUsersEmpty" class="admin-empty-state" hidden>
+                        No user records found.
+                    </p>
+                </section>
+            </section>
+
+            <!-- BATCH MANAGEMENT -->
+            <section class="admin-page" id="batches">
+                <div class="admin-section-heading">
+                    <div>
+                        <h2>Batch Management</h2>
+                        <p>Review submitted batch records and their current status.</p>
+                    </div>
+                </div>
+
+                <section class="admin-surface-card">
+                    <div class="admin-filter-row">
+                        <div class="admin-search-box">
+                            <span class="material-symbols-outlined">search</span>
+                            <input id="adminBatchSearch" type="search"
+                                   placeholder="Search batch name or filename"
+                                   aria-label="Search batch records">
+                        </div>
+
+                        <select id="adminBatchStatusFilter" aria-label="Filter batches">
+                            <option value="all">All Statuses</option>
+                            <option value="Pending">Pending</option>
+                            <option value="Classified">Classified</option>
+                            <option value="Flagged">Flagged</option>
+                        </select>
+                    </div>
+
+                    <div class="admin-table-wrap">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Batch</th>
+                                    <th>Date</th>
+                                    <th>Classification</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminBatchTableBody"></tbody>
+                        </table>
+                    </div>
+
+                    <p id="adminBatchesEmpty" class="admin-empty-state" hidden>
+                        No batch records found.
+                    </p>
+                </section>
+            </section>
+
+            <!-- CLASSIFICATIONS -->
+            <section class="admin-page" id="classifications">
+                <div class="admin-section-heading">
+                    <div>
+                        <h2>Classification Monitoring</h2>
+                        <p>Review actual classification records received from the AI backend.</p>
+                    </div>
+                </div>
+
+                <section class="admin-surface-card">
+                    <div class="admin-notice">
+                        <span class="material-symbols-outlined">info</span>
+                        <p>Only records marked Classified and containing an actual stage from the backend should be treated as AI results.</p>
+                    </div>
+                    <div id="adminClassificationList" class="admin-classification-list"></div>
+                </section>
+            </section>
+
+            <!-- SYSTEM ACTIVITY -->
+            <section class="admin-page" id="activity">
+                <div class="admin-section-heading">
+                    <div>
+                        <h2>System Activity</h2>
+                        <p>Browser-local events displayed for this frontend session and stored activity.</p>
+                    </div>
+                    <button type="button" class="admin-secondary-button" id="adminClearActivity">
+                        Clear Local Activity
+                    </button>
+                </div>
+
+                <section class="admin-surface-card">
+                    <div id="adminActivityList" class="admin-activity-list"></div>
+                </section>
+            </section>
+
+            <!-- PROFILE -->
+            <section class="admin-page" id="profile">
+                <div class="admin-section-heading">
+                    <div>
+                        <h2>My Profile</h2>
+                        <p>Administrator account overview.</p>
+                    </div>
+                </div>
+
+                <section class="admin-surface-card admin-profile-card">
+                    <div class="admin-profile-avatar">
+                        <span class="material-symbols-outlined">admin_panel_settings</span>
+                    </div>
+                    <h2>Administrator</h2>
+                    <p class="admin-profile-role">System Management</p>
+
+                    <div class="admin-profile-divider"></div>
+
+                    <div class="admin-profile-detail">
+                        <span>Account Role</span>
+                        <strong>Admin</strong>
+                    </div>
+                    <div class="admin-profile-detail">
+                        <span>System</span>
+                        <strong>CacaoGradeAI</strong>
+                    </div>
+                    <div class="admin-profile-detail">
+                        <span>Workspace</span>
+                        <strong>Administration</strong>
+                    </div>
+                </section>
+            </section>
+
+            <footer class="admin-footer">
+                <span>CacaoGradeAI</span>
+                <span>Fermentation Classification &amp; Quality Assessment</span>
+            </footer>
+        </div>
+    </main>
+</div>
+
+<div class="admin-mobile-overlay" id="adminMobileOverlay"></div>
+
+<dialog id="adminDetailsDialog" class="admin-dialog">
+    <div class="admin-dialog-header">
+        <h2 id="adminDialogTitle">Record Details</h2>
+        <button type="button" class="admin-icon-button"
+                id="adminCloseDialog" aria-label="Close details">
+            <span class="material-symbols-outlined">close</span>
+        </button>
+    </div>
+    <div id="adminDialogContent"></div>
+</dialog>
+
+</body>
+</html>
